@@ -18,7 +18,7 @@ function Admin() {
   useEffect(() => {
     const getTotalServerRequest = () => {
       Axios.get(
-        "https://whitetowers.herokuapp.com/totalServerRequest/" +
+        "http://yongjuleehome.ga/4537/termproject/API/V1/totalServerRequest/" +
           localStorage.getItem("email"),
         {}
       ).then((response) => {
