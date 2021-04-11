@@ -10,6 +10,7 @@ function LogIn() {
   const [userPassword, setUserPassword] = useState("");
   const history = useHistory();
 
+  let endPoint = "https://whitetower.herokuapp.com/";
   const logInRequest = (e) => {
     e.preventDefault();
     if (userEmail === "" || userPassword === "") {
