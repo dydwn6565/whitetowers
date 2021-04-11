@@ -20,8 +20,20 @@ function PatientList() {
   const [newDate, setNewDate] = useState("");
   const [newTime, setNewTime] = useState("");
 
+  let endPoint = "https://whitetowers.herokuapp.com/";
+  const addCountRequest = (apiAddress) => {
+    console.log(localStorage.getItem("email"));
+    Axios.post(endPoint + "addCountRequest", {
+      apiAddress: apiAddress,
+      userEmail: localStorage.getItem("email"),
+    }).then((response) => {
+      console.log(response);
+    });
+  };
+
   const getPatient = () => {
-    Axios.get("http://localhost:8001/patientList").then((response) => {
+    addCountRequest("patientList");
+    Axios.get(endPoint + "patientList").then((response) => {
       setPatientList(response.data);
     });
   };
@@ -37,7 +49,8 @@ function PatientList() {
     ) {
       alert("Please fill in!");
     } else {
-      Axios.post("http://localhost:8001/createPatient", {
+      addCountRequest("createPatient");
+      Axios.post(endPoint + "createPatient", {
         name: name,
         city: city,
         mobile: mobile,
@@ -72,7 +85,8 @@ function PatientList() {
     ) {
       alert("Please fill in!");
     } else {
-      Axios.put("http://localhost:8001/updatePatient/", {
+      addCountRequest("updatePatient");
+      Axios.put(endPoint + "updatePatient/", {
         name: newName,
         city: newCity,
         mobile: newMobile,
@@ -103,7 +117,8 @@ function PatientList() {
 
   const removePatient = (ID) => {
     console.log(ID);
-    Axios.delete(`http://localhost:8001/deletePatient/${ID}`).then((response) => {
+    addCountRequest("deletePatient");
+    Axios.delete(endPoint + `deletePatient/${ID}`).then((response) => {
       setPatientList(
         patientList.filter((val) => {
           return val.ID !== ID;

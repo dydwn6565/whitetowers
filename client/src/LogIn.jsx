@@ -15,14 +15,51 @@ function LogIn() {
     if (userEmail === "" || userPassword === "") {
       alert("There is empty input box. Please fill in.");
     } else {
-      Axios.post("http://localhost:8001/login", {
+      Axios.post(endPoint + "login", {
         email: userEmail,
         password: userPassword,
       }).then((response) => {
-        localStorage.setItem("token", response.data.token);
-        history.push("/");
+        // console.log(response);
+        // console.log(response.message);
+
+        if (response.data.token === undefined) {
+          alert("This is invaild input");
+        } else {
+          localStorage.setItem("token", response.data.token);
+          getUserEmail();
+
+          history.push("/");
+        }
       });
+      // if (localStorage.getItem("email") === null) {
+      //   alert("This is not valid input");
+      // } else {
+      //   // insertUserId();
+      // }
     }
+  };
+  const insertUserId = (userEmail) => {
+    // console.log(userEmail)
+    Axios.post(endPoint + "insertUserId", {
+      userEmail: userEmail,
+    }).then((response) => {
+      console.log(response);
+    });
+  };
+
+  const getUserEmail = () => {
+    // console.log(localStorage.getItem("token"));
+
+    Axios.get(endPoint + "authUser", {
+      headers: {
+        "x-access-token": localStorage.getItem("token"),
+      },
+    }).then((response) => {
+      console.log(response.data);
+      // setUserEmail(response.data);
+      localStorage.setItem("email", response.data);
+      insertUserId(response.data);
+    });
   };
 
   return (
