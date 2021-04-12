@@ -14,10 +14,13 @@ function Register() {
     if (email === "" || password === "") {
       alert("There is empty input box. Please fill in.");
     } else {
-      Axios.post("https://yongjuleehome.ga/4537/termproject/API/V1/register", {
-        email: email,
-        password: password,
-      }).then((response) => {
+      Axios.post(
+        "https://www.yongjuleehome.ga/4537/termproject/API/V1/register",
+        {
+          email: email,
+          password: password,
+        }
+      ).then((response) => {
         console.log(response);
       });
       history.push("/");
