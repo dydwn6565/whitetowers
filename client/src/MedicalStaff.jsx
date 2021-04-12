@@ -105,8 +105,9 @@ function MedicalStaff() {
           patientID: patientID,
         }).then((response) => {
           console.log(response);
+          GetMedicalStaff();
         });
-        window.location.reload(false);
+        // window.location.reload(false);
       });
     }
   };
@@ -133,8 +134,8 @@ function MedicalStaff() {
       }).then((response) => {
         console.log(response);
         // window.location.reload(false);
+        GetMedicalStaff();
       });
-      // GetMedicalStaff()
     }
   };
 
@@ -170,6 +171,7 @@ function MedicalStaff() {
       }).then((response) => {
         console.log(response);
         // window.location.reload(false);
+        GetMedicalStaff();
       });
     });
   };
