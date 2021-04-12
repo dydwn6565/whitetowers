@@ -168,8 +168,8 @@ function MedicalStaff() {
         },
       }).then((response) => {
         // console.log(response);
+        window.location.reload(false);
       });
-      // window.location.reload(false);
     });
   };
 
