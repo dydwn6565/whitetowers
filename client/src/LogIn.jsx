@@ -10,7 +10,7 @@ function LogIn() {
   const [userPassword, setUserPassword] = useState("");
   const history = useHistory();
 
-  let endPoint = "https://yongjuleehome.ga/4537/termproject/API/V1/";
+  let endPoint = "https://heejaerica.online/4537/termproject/API/V1/";
   const logInRequest = (e) => {
     e.preventDefault();
     if (userEmail === "" || userPassword === "") {

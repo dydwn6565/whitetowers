@@ -20,7 +20,7 @@ function PatientList() {
   const [newDate, setNewDate] = useState("");
   const [newTime, setNewTime] = useState("");
 
-  let endPoint = "https://yongjuleehome.ga/4537/termproject/API/V1/";
+  let endPoint = "https://heejaerica.online/4537/termproject/API/V1/";
   const addCountRequest = (apiAddress) => {
     console.log(localStorage.getItem("email"));
     Axios.post(endPoint + "addCountRequest", {
