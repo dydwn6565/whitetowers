@@ -38,7 +38,7 @@ function PatientList() {
     });
   };
 
-  const addPatient = () => {
+  const addPatient = async () => {
     if (
       name === "" ||
       city === "" ||
@@ -58,7 +58,7 @@ function PatientList() {
         date: date,
         time: time,
       }).then(() => {
-        setPatientList([
+       await setPatientList([
           ...patientList,
           {
             name: name,
@@ -70,7 +70,7 @@ function PatientList() {
           },
         ]);
       });
-      // window.location.reload(false);
+      window.location.reload(false);
     }
   };
 
