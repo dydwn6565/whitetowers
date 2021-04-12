@@ -111,7 +111,7 @@ function MedicalStaff() {
     }
   };
 
-  const UpdateMedicalStaff = async (Id, startDate, patientID) => {
+  const UpdateMedicalStaff = (Id, startDate, patientID) => {
     // console.log(startDate);
     if (name === "" || position === "" || endDate === "" || endTime === "") {
       alert("please type empty section");
@@ -121,7 +121,7 @@ function MedicalStaff() {
       alert("This patient already has been scheduled  ");
     } else {
       addCountRequest("putMedicalStaff");
-     await Axios.put(endPoint + "put/medicalStaff/", {
+      Axios.put(endPoint + "put/medicalStaff/", {
         name: name,
         position: position,
         startTime: startDate,
@@ -130,7 +130,7 @@ function MedicalStaff() {
         updateNum: Id,
         patientID: patientID,
       }).then((response) => {
-        window.location.reload(false);
+        // window.location.reload(false);
         // console.log(response);
       });
       // GetMedicalStaff()
@@ -153,7 +153,7 @@ function MedicalStaff() {
     });
   };
 
-  const DeleteMedicalStaff = async (patientID, updateNum) => {
+  const DeleteMedicalStaff = (patientID, updateNum) => {
     // console.log("line107");
     addCountRequest("updateNotReserved");
     Axios.put(endPoint + "updateNotReserved/", {
@@ -162,14 +162,14 @@ function MedicalStaff() {
       // console.log(response);
       // console.log("line 108 delete");
       addCountRequest("deletePati");
-     await Axios.delete(endPoint + "delete/medicalStaff/", {
+      Axios.delete(endPoint + "delete/medicalStaff/", {
         data: {
           updateNum: updateNum,
         },
       }).then((response) => {
         // console.log(response);
       });
-      window.location.reload(false);
+      // window.location.reload(false);
     });
   };
 
