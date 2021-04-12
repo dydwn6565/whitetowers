@@ -111,6 +111,7 @@ function PatientList() {
               : val;
           })
         );
+        window.location.reload(false);
       });
     }
   };
