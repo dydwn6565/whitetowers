@@ -131,7 +131,7 @@ function MedicalStaff() {
         patientID: patientID,
       }).then((response) => {
         console.log(response);
-        window.location.reload(false);
+        // window.location.reload(false);
       });
       // GetMedicalStaff()
     }
@@ -168,7 +168,7 @@ function MedicalStaff() {
         },
       }).then((response) => {
         console.log(response);
-        window.location.reload(false);
+        // window.location.reload(false);
       });
     });
   };
