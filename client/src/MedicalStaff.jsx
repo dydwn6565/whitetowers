@@ -20,7 +20,7 @@ function MedicalStaff() {
   const [patientState, setPatientState] = useState("");
   // const [userEmail, setUserEmail] = useState("");
 
-  let endPoint = "https://heejaerica.online/4537/termproject/API/V1/";
+  let endPoint = "https://yongjuleehome.ga/4537/termproject/API/V1/";
   useEffect(() => {
     const getPatient = () => {
       Axios.get(endPoint + "patientList/").then((response) => {
@@ -30,22 +30,7 @@ function MedicalStaff() {
     };
     getPatient();
     GetMedicalStaff();
-    // getUserEmail();
-    // insertUserId();
   }, []);
-
-  // const getUserEmail = () => {
-  //   // console.log(localStorage.getItem("token"));
-
-  //   Axios.get("http://localhost:8001/authUser", {
-  //     headers: {
-  //       "x-access-token": localStorage.getItem("token"),
-  //     },
-  //   }).then((response) => {
-  //     console.log(response.data);
-  //     setUserEmail(response.data);
-  //   });
-  // };
 
   const addCountRequest = (apiAddress) => {
     console.log(localStorage.getItem("email"));
@@ -56,15 +41,6 @@ function MedicalStaff() {
       console.log(response);
     });
   };
-
-  // const insertUserId = () => {
-  //   // console.log(userEmail)
-  //   Axios.post("http://localhost:8001/insertUserId", {
-  //     userEmail: localStorage.getItem("email"),
-  //   }).then((response) => {
-  //     console.log(response);
-  //   });
-  // };
 
   const RegisterRequest = () => {
     console.log(startTime.split(" ")[1]);
@@ -106,6 +82,7 @@ function MedicalStaff() {
         }).then((response) => {
           console.log(response);
           GetMedicalStaff();
+          window.location.href = "/MedicalStaff";
         });
         // window.location.reload(false);
       });
@@ -170,8 +147,8 @@ function MedicalStaff() {
         },
       }).then((response) => {
         console.log(response);
-        // window.location.reload(false);
         GetMedicalStaff();
+        window.location.href = "/MedicalStaff";
       });
     });
   };
