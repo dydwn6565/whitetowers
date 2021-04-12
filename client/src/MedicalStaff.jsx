@@ -117,9 +117,10 @@ function MedicalStaff() {
       alert("please type empty section");
     } else if (startTime > endDate + " " + endTime) {
       alert("Your end time is forward than your start time");
-    } else if (patientState === 1) {
-      alert("This patient already has been scheduled  ");
-    } else {
+    }
+    // else if (patientState === 1) {
+    //   alert("This patient already has been scheduled  ");}
+    else {
       addCountRequest("putMedicalStaff");
       Axios.put(endPoint + "put/medicalStaff/", {
         name: name,
