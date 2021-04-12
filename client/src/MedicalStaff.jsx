@@ -133,7 +133,7 @@ function MedicalStaff() {
         console.log(response);
       });
       // GetMedicalStaff()
-      window.location.reload(false);
+      // window.location.reload(false);
     }
   };
 
