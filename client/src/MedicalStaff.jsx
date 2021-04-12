@@ -130,8 +130,8 @@ function MedicalStaff() {
         updateNum: Id,
         patientID: patientID,
       }).then((response) => {
-        // window.location.reload(false);
-        // console.log(response);
+        console.log(response);
+        window.location.reload(false);
       });
       // GetMedicalStaff()
     }
