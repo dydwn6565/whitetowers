@@ -36,19 +36,11 @@ function MedicalStaff() {
     // getUserEmail();
     // insertUserId();
   }, []);
-
-  // const getUserEmail = () => {
-  //   // console.log(localStorage.getItem("token"));
-
-  //   Axios.get("http://localhost:8001/authUser", {
-  //     headers: {
-  //       "x-access-token": localStorage.getItem("token"),
-  //     },
-  //   }).then((response) => {
-  //     console.log(response.data);
-  //     setUserEmail(response.data);
-  //   });
-  // };
+  const reloadPage = () => {
+    setTimeout(() => {
+      window.location.reload(false);
+    }, 1000);
+  };
 
   const addCountRequest = (apiAddress) => {
     console.log(localStorage.getItem("email"));
@@ -109,7 +101,7 @@ function MedicalStaff() {
         }).then((response) => {
           console.log(response);
         });
-        window.location.reload(false);
+        reloadPage();
       });
     }
   };
@@ -136,7 +128,7 @@ function MedicalStaff() {
         console.log(response);
         // window.location.reload(false);
       });
-      // GetMedicalStaff()
+      reloadPage();
     }
   };
 
@@ -164,14 +156,14 @@ function MedicalStaff() {
     }).then((response) => {
       // console.log(response);
       // console.log("line 108 delete");
-      addCountRequest("deletePati");
+      addCountRequest("deleteMedicalStaff");
       Axios.delete(endPoint + "delete/medicalStaff/", {
         data: {
           updateNum: updateNum,
         },
       }).then((response) => {
         console.log(response);
-        // window.location.reload(false);
+        reloadPage();
       });
     });
   };
