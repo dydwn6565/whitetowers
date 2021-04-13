@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Dropdown, Button } from "react-bootstrap";
+import React, { useState, useEffect, useRef } from "react";
+import { Dropdown, Button, Overlay, Tooltip } from "react-bootstrap";
 import Axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Header from "./Header";
@@ -20,18 +20,35 @@ function MedicalStaff() {
   const [patientState, setPatientState] = useState("");
   // const [userEmail, setUserEmail] = useState("");
 
-  let endPoint = "https://heejaerica.online/4537/termproject/API/V1/";
+  const [show, setShow] = useState(false);
+  const target = useRef(null);
 
+  let endPoint = "https://heejaerica.online/4537/termproject/API/V1/";
   useEffect(() => {
     const getPatient = () => {
-      Axios.get(endPoint + "patientList").then((response) => {
+      Axios.get(endPoint + "patientList/").then((response) => {
         setPatientList(response.data);
         console.log(response.data);
       });
     };
     getPatient();
     GetMedicalStaff();
+    // getUserEmail();
+    // insertUserId();
   }, []);
+
+  // const getUserEmail = () => {
+  //   // console.log(localStorage.getItem("token"));
+
+  //   Axios.get("http://localhost:8001/authUser", {
+  //     headers: {
+  //       "x-access-token": localStorage.getItem("token"),
+  //     },
+  //   }).then((response) => {
+  //     console.log(response.data);
+  //     setUserEmail(response.data);
+  //   });
+  // };
 
   const addCountRequest = (apiAddress) => {
     console.log(localStorage.getItem("email"));
@@ -43,11 +60,14 @@ function MedicalStaff() {
     });
   };
 
-  const reloadPage = () => {
-    setTimeout(() => {
-      window.location.reload(false);
-    }, 500);
-  };
+  // const insertUserId = () => {
+  //   // console.log(userEmail)
+  //   Axios.post("http://localhost:8001/insertUserId", {
+  //     userEmail: localStorage.getItem("email"),
+  //   }).then((response) => {
+  //     console.log(response);
+  //   });
+  // };
 
   const RegisterRequest = () => {
     console.log(startTime.split(" ")[1]);
@@ -89,7 +109,7 @@ function MedicalStaff() {
         }).then((response) => {
           console.log(response);
         });
-        reloadPage();
+        window.location.reload(false);
       });
     }
   };
@@ -101,7 +121,7 @@ function MedicalStaff() {
     } else if (startTime > endDate + " " + endTime) {
       alert("Your end time is forward than your start time");
     } else if (patientState === 1) {
-      alert("This patient already has been scheduled");
+      alert("This patient already has been scheduled  ");
     } else {
       addCountRequest("putMedicalStaff");
       Axios.put(endPoint + "put/medicalStaff/", {
@@ -117,12 +137,18 @@ function MedicalStaff() {
         // window.location.reload(false);
       });
       // GetMedicalStaff()
-      reloadPage();
     }
   };
 
   const GetMedicalStaff = () => {
-    Axios.get(endPoint + "get/medicalStaff", {}).then((response) => {
+    Axios.get(endPoint + "get/medicalStaff/", {
+      // name: name,
+      // position: position,
+      // startTime: startTime,
+      // endDate: endDate,
+      // endTime: endTime,
+      // patientID: patientID,
+    }).then((response) => {
       addCountRequest("getMedicalStaff");
       // console.log(response.data);
       // console.log(response.data[0].start_at);
@@ -138,7 +164,7 @@ function MedicalStaff() {
     }).then((response) => {
       // console.log(response);
       // console.log("line 108 delete");
-      addCountRequest("deletePatient");
+      addCountRequest("deletePati");
       Axios.delete(endPoint + "delete/medicalStaff/", {
         data: {
           updateNum: updateNum,
@@ -147,7 +173,6 @@ function MedicalStaff() {
         console.log(response);
         // window.location.reload(false);
       });
-      reloadPage();
     });
   };
 
@@ -161,9 +186,9 @@ function MedicalStaff() {
           </div>
           <div className="row">
             <div className="column"></div>
-            <div className="column">
+            <div className="column ">
               <div className="d-flex justify-content-center">
-                <div className="createSchedule">
+                <div className="createScehdule">
                   <form className="d-flex justify-content-center ">
                     <div className="form-row w-100 mx-3">
                       <div className="form-group col-md-6">
@@ -199,7 +224,7 @@ function MedicalStaff() {
                             variant="success btn-sm"
                             id="dropdown-basic"
                           >
-                            Patient
+                            Patient Id
                           </Dropdown.Toggle>
                           <br />
 
@@ -218,7 +243,8 @@ function MedicalStaff() {
                                     setPatientState(patient.reservedState);
                                   }}
                                 >
-                                  Patient: {patient.name} #{patient.ID}
+                                  {console.log(patient)}
+                                  Patient Name: {patient.name}
                                   <span>
                                     {patient.reservedState === 1 ? (
                                       <p>Reserved</p>
@@ -234,7 +260,7 @@ function MedicalStaff() {
 
                       <div className="form-group col-md-6">
                         <label htmlFor="inputName4">Start Date:</label>
-                        {selectedPatient}
+                        <div>{selectedPatient}</div>
                       </div>
                       <div className="form-group col-md-6">
                         <label htmlFor="inputName4">End Date: </label>
@@ -271,32 +297,56 @@ function MedicalStaff() {
                     >
                       Add Schedule
                     </Button>
+                    <Button
+                      className="btn btn-info btn-sm mr-3"
+                      ref={target}
+                      onClick={() => setShow(!show)}
+                    >
+                      How To Use
+                    </Button>
+                    <Overlay
+                      target={target.current}
+                      show={show}
+                      placement="top"
+                    >
+                      {(props) => (
+                        <Tooltip {...props}>
+                          <div style={{ lineHeight: "1" }}>
+                            <h5>Guide line</h5>
+                            <p>
+                              <b>Create Schedule:</b>
+                            </p>
+                            <p>
+                              1. Please fill up empty section and select one of
+                              patient
+                            </p>
+                            <p>
+                              2. Press Add Schedule button(blue colour button){" "}
+                            </p>
+                            <p>
+                              <b>Update Schedule:</b>{" "}
+                            </p>
+                            <p>1. Please fill up empty sections </p>
+                            <p>2. Press Update button(grey colour button) </p>
+                            <p>
+                              <b>Delete Schedule:</b>{" "}
+                            </p>
+                            <p>
+                              Press Delete button(light blue colour button){" "}
+                            </p>
+                          </div>
+                        </Tooltip>
+                      )}
+                    </Overlay>
                   </div>
                 </div>
               </div>
             </div>
 
-            <div className="column">
-              <h4 className="d-flex justify-content-center p-2">Guide line</h4>
-              <p>
-                <b>Create Schedule:</b>{" "}
-              </p>
-              <p>1. Please fill up empty section and select one of patient </p>
-              <p>2. Press Add Schedule button(blue colour button) </p>
-              <p>
-                <b>Update Schedule:</b>{" "}
-              </p>
-              <p>1. Please fill up empty sections </p>
-              <p>2. Press Update button(grey colour button) </p>
-              <p>
-                <b>Delete Schedule:</b>{" "}
-              </p>
-              <p>Press Delete button(light blue colour button) </p>
-            </div>
             <div className="column"></div>
           </div>
 
-          <div className="d-flex justify-content-center p-5">
+          <div className="d-flex justify-content-center">
             <div className="schedule">
               <div>{list.position}</div>
               <div className="d-flex justify-content-center">
@@ -330,10 +380,9 @@ function MedicalStaff() {
                         <td>{li.position}</td>
                         <td>{li.start_at}</td>
                         <td>{li.end_at}</td>
-
                         <td style={{ textAlign: "center" }}>{li.patientID}</td>
                         <Button
-                          className="btn btn-secondary btn-sm mr-3"
+                          className="btn btn-secondary btn-sm mr-3 mt-2"
                           onClick={() => {
                             UpdateMedicalStaff(
                               li.Id,
@@ -345,7 +394,7 @@ function MedicalStaff() {
                           Update
                         </Button>
                         <Button
-                          className="btn btn-info btn-sm mr-3"
+                          className="btn btn-info btn-sm mr-3 mt-2"
                           onClick={() => {
                             DeleteMedicalStaff(li.patientID, li.Id);
                           }}
