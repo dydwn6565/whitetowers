@@ -31,22 +31,7 @@ function MedicalStaff() {
     };
     getPatient();
     GetMedicalStaff();
-    // getUserEmail();
-    // insertUserId();
   }, []);
-
-  // const getUserEmail = () => {
-  //   // console.log(localStorage.getItem("token"));
-
-  //   Axios.get("http://localhost:8001/authUser", {
-  //     headers: {
-  //       "x-access-token": localStorage.getItem("token"),
-  //     },
-  //   }).then((response) => {
-  //     console.log(response.data);
-  //     setUserEmail(response.data);
-  //   });
-  // };
 
   const addCountRequest = (apiAddress) => {
     console.log(localStorage.getItem("email"));
@@ -58,17 +43,10 @@ function MedicalStaff() {
     });
   };
 
-  // const insertUserId = () => {
-  //   // console.log(userEmail)
-  //   Axios.post("http://localhost:8001/insertUserId", {
-  //     userEmail: localStorage.getItem("email"),
-  //   }).then((response) => {
-  //     console.log(response);
-  //   });
-  // };
-
   const reloadPage = () => {
-    window.location.reload(false);
+    setTimeout(() => {
+      window.location.reload(false);
+    }, 3000);
   };
 
   const RegisterRequest = () => {
@@ -110,8 +88,8 @@ function MedicalStaff() {
           patientID: patientID,
         }).then((response) => {
           console.log(response);
-          reloadPage();
         });
+        reloadPage();
       });
     }
   };
@@ -174,8 +152,8 @@ function MedicalStaff() {
       }).then((response) => {
         console.log(response);
         // window.location.reload(false);
-        reloadPage();
       });
+      reloadPage();
     });
   };
 
