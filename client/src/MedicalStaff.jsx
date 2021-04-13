@@ -199,7 +199,7 @@ function MedicalStaff() {
                             variant="success btn-sm"
                             id="dropdown-basic"
                           >
-                            Patient Id
+                            Patient
                           </Dropdown.Toggle>
                           <br />
 
@@ -218,7 +218,7 @@ function MedicalStaff() {
                                     setPatientState(patient.reservedState);
                                   }}
                                 >
-                                  Patient#: {patient.ID}
+                                  Patient: {patient.name} #{patient.ID}
                                   <span>
                                     {patient.reservedState === 1 ? (
                                       <p>Reserved</p>
@@ -226,7 +226,6 @@ function MedicalStaff() {
                                       <p>Not Reserved</p>
                                     )}
                                   </span>
-                                  Name:{patient.name}
                                 </Dropdown.Item>
                               ))}
                           </Dropdown.Menu>
