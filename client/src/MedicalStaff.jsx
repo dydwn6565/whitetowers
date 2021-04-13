@@ -93,11 +93,11 @@ function MedicalStaff() {
         startTime: startTime,
         endDate: endDate,
         endTime: endTime,
-      }).then((response) => {
+      }).then(async (response) => {
         // console.log(response);
         // console.log("line55");
         addCountRequest("postMedicalStaff");
-        Axios.post(endPoint + "post/medicalStaff/", {
+        await Axios.post(endPoint + "post/medicalStaff/", {
           name: name,
           position: position,
           startTime: startTime,
