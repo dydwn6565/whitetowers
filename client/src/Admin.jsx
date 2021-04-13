@@ -18,7 +18,7 @@ function Admin() {
   useEffect(() => {
     const getTotalServerRequest = () => {
       Axios.get(
-        "https://www.yongjuleehome.ga/4537/termproject/API/V1/totalServerRequest/" +
+        "https://yongjuleehome.ga/4537/termproject/API/V1/totalServerRequest/" +
           localStorage.getItem("email"),
         {}
       ).then((response) => {
