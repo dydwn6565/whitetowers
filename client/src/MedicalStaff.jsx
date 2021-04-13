@@ -80,11 +80,11 @@ function MedicalStaff() {
           endTime: endTime,
           patientID: patientID,
         }).then((response) => {
-          console.log(response);
+          // console.log(response);
           GetMedicalStaff();
-          window.location.href = "/MedicalStaff";
+          // window.location.href = "/MedicalStaff";
         });
-        // window.location.reload(false);
+        window.location.reload(false);
       });
     }
   };
@@ -148,7 +148,7 @@ function MedicalStaff() {
       }).then((response) => {
         console.log(response);
         GetMedicalStaff();
-        window.location.href = "/MedicalStaff";
+        window.location.relaod(false);
       });
     });
   };
