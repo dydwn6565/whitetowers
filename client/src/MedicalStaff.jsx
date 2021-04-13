@@ -67,6 +67,10 @@ function MedicalStaff() {
   //   });
   // };
 
+  const reloadPage = () => {
+    window.location.reload(false);
+  };
+
   const RegisterRequest = () => {
     console.log(startTime.split(" ")[1]);
     console.log(endDate + " " + endTime);
@@ -93,11 +97,11 @@ function MedicalStaff() {
         startTime: startTime,
         endDate: endDate,
         endTime: endTime,
-      }).then(async (response) => {
+      }).then((response) => {
         // console.log(response);
         // console.log("line55");
         addCountRequest("postMedicalStaff");
-        await Axios.post(endPoint + "post/medicalStaff/", {
+        Axios.post(endPoint + "post/medicalStaff/", {
           name: name,
           position: position,
           startTime: startTime,
@@ -106,8 +110,8 @@ function MedicalStaff() {
           patientID: patientID,
         }).then((response) => {
           console.log(response);
+          reloadPage();
         });
-        window.location.reload(false);
       });
     }
   };
@@ -170,6 +174,7 @@ function MedicalStaff() {
       }).then((response) => {
         console.log(response);
         // window.location.reload(false);
+        reloadPage();
       });
     });
   };
