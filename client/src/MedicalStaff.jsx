@@ -46,7 +46,7 @@ function MedicalStaff() {
   const reloadPage = () => {
     setTimeout(() => {
       window.location.reload(false);
-    }, 1000);
+    }, 500);
   };
 
   const RegisterRequest = () => {
@@ -117,18 +117,12 @@ function MedicalStaff() {
         // window.location.reload(false);
       });
       // GetMedicalStaff()
+      reloadPage();
     }
   };
 
   const GetMedicalStaff = () => {
-    Axios.get(endPoint + "get/medicalStaff", {
-      // name: name,
-      // position: position,
-      // startTime: startTime,
-      // endDate: endDate,
-      // endTime: endTime,
-      // patientID: patientID,
-    }).then((response) => {
+    Axios.get(endPoint + "get/medicalStaff", {}).then((response) => {
       addCountRequest("getMedicalStaff");
       // console.log(response.data);
       // console.log(response.data[0].start_at);
@@ -165,7 +159,7 @@ function MedicalStaff() {
           <div className="d-flex justify-content-center p-3">
             <h3>Create Schedule</h3>
           </div>
-          <div className="row" style={{ marginTop: "-60px" }}>
+          <div className="row">
             <div className="column"></div>
             <div className="column ">
               <div className="d-flex justify-content-center">
