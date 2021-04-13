@@ -161,9 +161,9 @@ function MedicalStaff() {
           </div>
           <div className="row">
             <div className="column"></div>
-            <div className="column ">
+            <div className="column">
               <div className="d-flex justify-content-center">
-                <div className="createScehdule">
+                <div className="createSchedule">
                   <form className="d-flex justify-content-center ">
                     <div className="form-row w-100 mx-3">
                       <div className="form-group col-md-6">
@@ -218,7 +218,6 @@ function MedicalStaff() {
                                     setPatientState(patient.reservedState);
                                   }}
                                 >
-                                  {" "}
                                   Patient#: {patient.ID}
                                   <span>
                                     {patient.reservedState === 1 ? (
@@ -227,6 +226,7 @@ function MedicalStaff() {
                                       <p>Not Reserved</p>
                                     )}
                                   </span>
+                                  Name:{patient.name}
                                 </Dropdown.Item>
                               ))}
                           </Dropdown.Menu>
@@ -277,7 +277,7 @@ function MedicalStaff() {
               </div>
             </div>
 
-            <div className="column p-5">
+            <div className="column">
               <h4 className="d-flex justify-content-center p-2">Guide line</h4>
               <p>
                 <b>Create Schedule:</b>{" "}
