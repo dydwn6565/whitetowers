@@ -24,7 +24,7 @@ function MedicalStaff() {
 
   useEffect(() => {
     const getPatient = () => {
-      Axios.get(endPoint + "patientList/").then((response) => {
+      Axios.get(endPoint + "patientList").then((response) => {
         setPatientList(response.data);
         console.log(response.data);
       });
@@ -46,7 +46,7 @@ function MedicalStaff() {
   const reloadPage = () => {
     setTimeout(() => {
       window.location.reload(false);
-    }, 3000);
+    }, 1000);
   };
 
   const RegisterRequest = () => {
@@ -101,7 +101,7 @@ function MedicalStaff() {
     } else if (startTime > endDate + " " + endTime) {
       alert("Your end time is forward than your start time");
     } else if (patientState === 1) {
-      alert("This patient already has been scheduled  ");
+      alert("This patient already has been scheduled");
     } else {
       addCountRequest("putMedicalStaff");
       Axios.put(endPoint + "put/medicalStaff/", {
@@ -121,7 +121,7 @@ function MedicalStaff() {
   };
 
   const GetMedicalStaff = () => {
-    Axios.get(endPoint + "get/medicalStaff/", {
+    Axios.get(endPoint + "get/medicalStaff", {
       // name: name,
       // position: position,
       // startTime: startTime,
@@ -144,7 +144,7 @@ function MedicalStaff() {
     }).then((response) => {
       // console.log(response);
       // console.log("line 108 delete");
-      addCountRequest("deletePati");
+      addCountRequest("deletePatient");
       Axios.delete(endPoint + "delete/medicalStaff/", {
         data: {
           updateNum: updateNum,
@@ -165,7 +165,7 @@ function MedicalStaff() {
           <div className="d-flex justify-content-center p-3">
             <h3>Create Schedule</h3>
           </div>
-          <div className="row">
+          <div className="row" style={{ marginTop: "-60px" }}>
             <div className="column"></div>
             <div className="column ">
               <div className="d-flex justify-content-center">

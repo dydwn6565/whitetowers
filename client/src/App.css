@@ -15,7 +15,7 @@ body {
   /* float: left; */
   width: 25%;
   /* padding: -10%; */
-  margin: auto;
+  /* margin: auto; */
 }
 .row:after {
   content: "";
